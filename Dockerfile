@@ -5,7 +5,7 @@ ARG GCC_VERSION=11.2.0
 RUN echo GCC_VERSION=${GCC_VERSION}
 RUN yum groupinstall "Development Tools" -y
 RUN yum install wget cmake3 glibc-static -y
-RUn yum autoremove -y
+RUn yum autoremove -y || true
 RUN ln -s /usr/bin/cmake3 /usr/bin/cmake
 WORKDIR /code
 RUN wget https://ftp.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.xz -O gcc-${GCC_VERSION}.tar.xz --no-check-certificate
