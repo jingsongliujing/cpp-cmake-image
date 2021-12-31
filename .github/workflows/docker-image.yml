@@ -14,7 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Prepare Docker buildx platforms
-      run: docker run --privileged --rm tonistiigi/binfmt --install all
-    - name: Show Docker buildx platforms
-      run: docker buildx ls
+    - name: Prepare Docker buildx
+      run: |
+        docker run --privileged --rm tonistiigi/binfmt --install all
+        docker buildx create --use --name builder
+        docker buildx ls
+    - name: Build images
+      run: |
+        docker buildx build --platform linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t cpp-cmake:test .
