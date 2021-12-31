@@ -10,7 +10,8 @@ RUN ln -s /usr/bin/cmake3 /usr/bin/cmake
 WORKDIR /code
 RUN wget https://ftp.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.xz -O gcc-${GCC_VERSION}.tar.xz --no-check-certificate
 RUN tar -xf gcc-11.2.0.tar.xz
+WORKDIR /code/gcc-${GCC_VERSION}
+RUN ./contrib/download_prerequisites
 WORKDIR /code/build
-RUN ../gcc-${GCC_VERSION}/contrib/download_prerequisites
 RUN ../gcc-${GCC_VERSION}/configure --enable-languages=c,c++ --disable-multilib
 RUN make -j`cat /proc/cpuinfo| grep "processor"| wc -l`
