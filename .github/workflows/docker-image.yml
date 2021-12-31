@@ -21,4 +21,4 @@ jobs:
         docker buildx ls
     - name: Build images
       run: |
-        docker buildx build --platform linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t cpp-cmake:test .
+        docker buildx build --platform linux/amd64,linux/arm/v7,linux/arm64,linux/ppc64le -t cpp-cmake:test .
