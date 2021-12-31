@@ -14,5 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Prepare Docker buildx platforms
+      run: docker run --privileged --rm tonistiigi/binfmt --install all
     - name: Show Docker buildx platforms
       run: docker buildx ls
