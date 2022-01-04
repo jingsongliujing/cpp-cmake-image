@@ -9,8 +9,10 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        docker-platform: [linux/amd64, linux/arm/v7, linux/arm64, linux/ppc64le]
 
     steps:
     - uses: actions/checkout@v2
@@ -19,15 +21,6 @@ jobs:
         docker run --privileged --rm tonistiigi/binfmt --install all
         docker buildx create --use --name builder
         docker buildx ls
-    - name: Build image linux/amd64
+    - name: Build image
       run: |
-        docker buildx build --platform linux/amd64 -t cpp-cmake:test .
-    - name: Build image linux/arm/v7
-      run: |
-        docker buildx build --platform linux/arm/v7 -t cpp-cmake:test .
-    - name: Build image linux/arm64
-      run: |
-        docker buildx build --platform linux/arm64 -t cpp-cmake:test .
-    - name: Build image linux/ppc64le
-      run: |
-        docker buildx build --platform linux/ppc64le -t cpp-cmake:test .
+        docker buildx build --platform ${{ matrix.docker-platform }} -t cpp-cmake:test-${{ matrix.docker-platform }} .
