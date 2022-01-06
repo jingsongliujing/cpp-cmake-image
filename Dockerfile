@@ -13,7 +13,7 @@ WORKDIR /src
 RUN wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.tar.gz
 RUN tar -zxf cmake-${CMAKE_VERSION}.tar.gz
 WORKDIR /src/build
-RUN ../cmake-${CMAKE_VERSION}.tar.gz/configure
+RUN ../cmake-${CMAKE_VERSION}/configure
 RUN make && make install
 WORKDIR /
 RUN rm -rf /src
