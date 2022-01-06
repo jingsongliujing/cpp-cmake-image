@@ -10,9 +10,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        docker-platform: [linux/amd64, linux/arm/v7, linux/arm64, linux/ppc64le]
 
     steps:
     - uses: actions/checkout@v2
