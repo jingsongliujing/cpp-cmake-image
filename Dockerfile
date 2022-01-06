@@ -1,4 +1,4 @@
-FROM gcc:11.2.0-bullseye
+FROM gcc:10.2.0-bullseye
 
 RUN apt update
 RUN apt install -y cmake
