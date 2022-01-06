@@ -2,6 +2,8 @@ ARG GCC_VERSION=10.2
 ARG CMAKE_VERSION=3.22.1
 FROM gcc:${GCC_VERSION}
 
+RUN echo GCC_VERSION=${GCC_VERSION}
+RUN echo CMAKE_VERSION=${CMAKE_VERSION}
 RUN apt update
 RUN apt install wget
 RUN apt autoremove -y || true
