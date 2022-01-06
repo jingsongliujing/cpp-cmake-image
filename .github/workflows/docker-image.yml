@@ -31,4 +31,4 @@ jobs:
       
     - name: Build image
       run: |
-        docker buildx build --push --platform linux/amd64,linux/arm/v7,linux/arm64,linux/ppc64le -t cpp-cmake:latest .
+        docker buildx build --push --platform linux/amd64,linux/arm/v7,linux/arm64,linux/ppc64le -t "${{ secrets.DOCKERHUB_USERNAME }}/cpp-cmake:latest" .
